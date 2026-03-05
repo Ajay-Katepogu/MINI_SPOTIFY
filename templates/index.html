@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mini Music Player</title>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f0f0f, #1c1c1c, #2b0000);
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #ff3b3b;
+            margin-top: 30px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input {
+            padding: 12px;
+            width: 260px;
+            border-radius: 6px;
+            border: none;
+        }
+
+        button {
+            padding: 12px 18px;
+            background: #ff3b3b;
+            border: none;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #ff1a1a;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: #1b1b1b;
+            margin: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            width: 200px;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .card h3 {
+            font-size: 16px;
+            margin: 10px 0 5px 0;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #cccccc;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Mini Music Player 🎵</h1>
+
+    <form method="POST">
+        <input type="text" name="song" placeholder="Search songs..." required>
+        <button type="submit">Search</button>
+    </form>
+
+    <div class="container">
+
+        {% for song in songs %}
+
+        <div class="card">
+
+            <img src="{{ song.artworkUrl100 }}">
+
+            <h3>{{ song.trackName }}</h3>
+
+            <p>{{ song.artistName }}</p>
+
+            <audio controls>
+                <source src="{{ song.previewUrl }}" type="audio/mpeg">
+            </audio>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</body>
+
+</html>
